@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <ostream>
+#include <string>
 
 #ifndef NULL
 #define NULL 0x00
@@ -18,12 +19,12 @@
 class BSTNode
 {
     private:
-        int data;
+        std::string data;
         BSTNode* left;
         BSTNode* right;
 
     public:
-        BSTNode(int data);
+        BSTNode(std::string data);
         ~BSTNode();
 
     friend class BSTree;
@@ -40,7 +41,7 @@ class BSTree
     private:
         BSTNode* root;
 
-        BSTNode* insert(int data, BSTNode* root);
+        BSTNode* insert(std::string data, BSTNode* root);
         int height(BSTNode* root);
 
         void preorder(BSTNode* root, std::ostream& os);

@@ -6,7 +6,7 @@
  * Node Class Functions
 */
 
-BSTNode::BSTNode(int data){
+BSTNode::BSTNode(std::string data){
     
     this->data = data;
     
@@ -30,7 +30,7 @@ BSTNode::~BSTNode(){
  * Private Functions
 */
 
-BSTNode* BSTree::insert(int data, BSTNode* root){
+BSTNode* BSTree::insert(std::string data, BSTNode* root){
     
     if(!root) {
         
@@ -38,13 +38,18 @@ BSTNode* BSTree::insert(int data, BSTNode* root){
         
     }
     
-    if (data < root->data) {
+    if (data.compare(root->data) < 0) { /// with compare, if data.compare(root->data) < 0 then data is < root->data, if it's > 0, then data > root->data, and if it = 0 then the two are the same
         
         root->left = insert(data, root->left);
         
-    } else {
+    } else if (data.compare(root->data) > 0) {
         
         root->right = insert(data, root->right);
+        
+    } else {
+        
+        //This is where you would input code to look at when a repeated word has been entered
+        //I belive, that if there is a repeated word, then it would come down the tree the same way so it should reach here
         
     }
 
@@ -150,17 +155,17 @@ bool BSTree::search(int data, BSTNode* root){
         
     }
     
-    if (root->data == data) {
+    if (root->data.compare(data) == 0) {
         
         return true;
         
     }
     
-    if (data < root->data) {
+    if (data.compare(root->data) < 0) {
         
         return search(data, root->left);
         
-    } else if (data > root->data) {
+    } else if (data.compare(root->data) > 0) {
         
         return search(data, root->right);
     
@@ -185,7 +190,7 @@ BSTree::~BSTree(){
 
 }
 
-void BSTree::insert(int data){
+void BSTree::insert(std::string data){
     
     this->root = this->insert(data, this->root);
 
@@ -215,7 +220,7 @@ void BSTree::postorder(std::ostream& os){
 
 }
 
-bool BSTree::search(int data){
+bool BSTree::search(std::string data){
     
     return search(data, this->root);
 
