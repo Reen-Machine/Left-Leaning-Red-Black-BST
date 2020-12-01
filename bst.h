@@ -49,20 +49,20 @@ class BSTree
         void postorder(BSTNode* root, std::ostream& os);
 
         void destroy(BSTNode* root);
-        bool search(int data, BSTNode* root);
+        bool search(std::string data, BSTNode* root);
 
     public:
         BSTree();
         ~BSTree();
 
-        void insert(int data);
+        void insert(std::string data);
         int height();
 
         void preorder(std::ostream& os = std::cout);
         void inorder(std::ostream& os = std::cout);
         void postorder(std::ostream& os = std::cout);
 
-        bool search(int data);
+        bool search(std::string data);
 
 };
 

@@ -38,11 +38,13 @@ BSTNode* BSTree::insert(std::string data, BSTNode* root){
         
     }
     
-    if (data.compare(root->data) < 0) { /// with compare, if data.compare(root->data) < 0 then data is < root->data, if it's > 0, then data > root->data, and if it = 0 then the two are the same
+    int x = data.compare(root->data); /// with compare, if data.compare(root->data) < 0 then data is < root->data, if it's > 0, then data > root->data, and if it = 0 then the two are the same
+    
+    if (x < 0) { 
         
         root->left = insert(data, root->left);
         
-    } else if (data.compare(root->data) > 0) {
+    } else if (x > 0) {
         
         root->right = insert(data, root->right);
         
@@ -147,7 +149,7 @@ void BSTree::destroy(BSTNode* root){
 
 }
 
-bool BSTree::search(int data, BSTNode* root){
+bool BSTree::search(std::string data, BSTNode* root){
     
     if (root == NULL) {
         
@@ -155,17 +157,19 @@ bool BSTree::search(int data, BSTNode* root){
         
     }
     
-    if (root->data.compare(data) == 0) {
+    int x = data.compare(root->data);
+    
+    if (x == 0) {
         
         return true;
         
     }
     
-    if (data.compare(root->data) < 0) {
+    if (x < 0) {
         
         return search(data, root->left);
         
-    } else if (data.compare(root->data) > 0) {
+    } else if (x > 0) {
         
         return search(data, root->right);
     
