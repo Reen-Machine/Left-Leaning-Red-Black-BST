@@ -1,3 +1,5 @@
+//Ryan Benvenuti, Max Mueller, Peter Saakov
+
 #include "bst.h"
 
 /*
