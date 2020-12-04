@@ -51,8 +51,7 @@ BSTNode* BSTree::insert(std::string data, BSTNode* root){
 
     } else {
 
-        //This is where you would input code to look at when a repeated word has been entered
-        //I belive, that if there is a repeated word, then it would come down the tree the same way so it should reach here
+        root->count++; //This is where you would input code to look at when a repeated word has been entered. //I believe, that if there is a repeated word, then it would come down the tree the same way so it should reach here
 
     }
 
