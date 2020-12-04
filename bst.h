@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <ostream>
+#include <string>
 
 #ifndef NULL
 #define NULL 0x00
@@ -18,12 +19,12 @@
 class BSTNode
 {
     private:
-        int data;
+        std::string data;
         BSTNode* left;
         BSTNode* right;
 
     public:
-        BSTNode(int data);
+        BSTNode(std::string data);
         ~BSTNode();
 
     friend class BSTree;
@@ -40,7 +41,7 @@ class BSTree
     private:
         BSTNode* root;
 
-        BSTNode* insert(int data, BSTNode* root);
+        BSTNode* insert(std::string data, BSTNode* root);
         int height(BSTNode* root);
 
         void preorder(BSTNode* root, std::ostream& os);
@@ -48,20 +49,20 @@ class BSTree
         void postorder(BSTNode* root, std::ostream& os);
 
         void destroy(BSTNode* root);
-        bool search(int data, BSTNode* root);
+        bool search(std::string data, BSTNode* root);
 
     public:
         BSTree();
         ~BSTree();
 
-        void insert(int data);
+        void insert(std::string data);
         int height();
 
         void preorder(std::ostream& os = std::cout);
         void inorder(std::ostream& os = std::cout);
         void postorder(std::ostream& os = std::cout);
 
-        bool search(int data);
+        bool search(std::string data);
 
 };
 
