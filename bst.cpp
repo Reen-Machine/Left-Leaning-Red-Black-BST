@@ -178,6 +178,35 @@ bool BSTree::search(std::string data, BSTNode* root){
 
 }
 
+BSTree::count_helper(std::string data, BSTNode* root){          //function definition
+
+    if (root == NULL) {
+
+        return;
+
+    }
+
+    if (root->data == data) {
+
+        count += 1;                                         //if match, add to count and continue
+        return count_helper(data, root->left);
+        return count_helper(data, root->right);
+
+    }
+
+//need to search every node regardless of match to get accurate count
+    else {
+
+        return count_helper(data, root->left);
+        return count_helper(data, root->right);
+
+    }
+
+    return count;
+
+}
+
+
 /*
  * Public Functions
 */
@@ -227,5 +256,12 @@ void BSTree::postorder(std::ostream& os){
 bool BSTree::search(std::string data){
 
     return search(data, this->root);
+
+}
+
+
+BSTree::count_helper(std::string data){             //function definition
+
+    return count_helper(data, this->root);
 
 }
