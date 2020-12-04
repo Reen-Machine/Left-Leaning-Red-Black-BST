@@ -8,6 +8,7 @@
 
 BSTNode::BSTNode(std::string data){
 
+    this->count = 1;
     this->data = data;
 
     this->left = NULL;
@@ -178,31 +179,33 @@ bool BSTree::search(std::string data, BSTNode* root){
 
 }
 
-BSTree::count_helper(std::string data, BSTNode* root){          //function definition
+int BSTree::count_helper(std::string data, BSTNode* root){          //function definition
 
     if (root == NULL) {
 
-        return;
+        return 0;
 
     }
 
-    if (root->data == data) {
+    int x = data.compare(root->data);
 
-        count += 1;                                         //if match, add to count and continue
+    if (x == 0) {
+
+        return root->count;
+
+    }
+
+    if (x < 0) {
+
         return count_helper(data, root->left);
+
+    } else if (x > 0) {
+
         return count_helper(data, root->right);
 
     }
 
-//need to search every node regardless of match to get accurate count
-    else {
 
-        return count_helper(data, root->left);
-        return count_helper(data, root->right);
-
-    }
-
-    return count;
 
 }
 

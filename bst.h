@@ -19,6 +19,7 @@
 class BSTNode
 {
     private:
+        int count;
         std::string data;
         BSTNode* left;
         BSTNode* right;
