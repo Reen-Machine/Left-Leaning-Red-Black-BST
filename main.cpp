@@ -1,39 +1,45 @@
-//use include <string> in bst.h for std::string library
+#include <string>
+#include <iostream>
+#include <vector>
+#include <fstream>
+#include <sstream>
+
+#include "bst.h"
+
+int main(int argc, char **argv) {
+
+    std::string in_fname = argv[1];
+
+    std::ifstream in_file(argv[1]);
+
+    std::vector <std::string> arr;
+    std::string line;
+    std::string val;
+
+    while(std::getline(in_file, line)) {
+
+        std::istringstream word(line);
+
+        while (word >> val) {
+
+            arr.push_back(val);
+
+        }
+    }
 
 
+    BSTree n;
+    std::string temp;
 
-BSTree::count_helper(std::string data, BSTNode* root){          //function definition
+    for (int i = 0; i < arr.size(); i++) {
 
-    if (root == NULL) {
+        temp = arr[i];
 
-        return;
+        n.insert(temp);
 
     }
 
-    if (root->data == data) {
-
-        count += 1;                                         //if match, add to count and continue
-        return count_helper(data, root->left);
-        return count_helper(data, root->right);
-
-    }
-
-//need to search every node regardless of match to get accurate count
-    else {
-
-        return count_helper(data, root->left);
-        return count_helper(data, root->right);
-
-    }
-
-    return count;
+    return 0;
 
 }
 
-
-
-BSTree::count_helper(std::string data){             //function definition
-
-    return count_helper(data, this->root);
-
-}
