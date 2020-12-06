@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <ostream>
+#include <fstream>
 #include <string>
 
 #ifndef NULL
@@ -23,8 +24,10 @@ class BSTNode
         std::string data;
         BSTNode* left;
         BSTNode* right;
+        bool red;
 
     public:
+        BSTNode();
         BSTNode(std::string data);
         ~BSTNode();
 
@@ -52,6 +55,15 @@ class BSTree
         void destroy(BSTNode* root);
         bool search(std::string data, BSTNode* root);
 
+        int count_helper(std::string data, BSTNode* root);
+
+        BSTNode* rotateLeft(BSTNode* node);
+        BSTNode* rotateRight(BSTNode* node);
+
+        bool isRed(BSTNode* node);
+
+        void DOT(std::ofstream& of, BSTNode* root);
+
     public:
         BSTree();
         ~BSTree();
@@ -64,6 +76,10 @@ class BSTree
         void postorder(std::ostream& os = std::cout);
 
         bool search(std::string data);
+
+        int count_helper(std::string data);
+
+        void DOT(std::string fname);
 
 };
 
