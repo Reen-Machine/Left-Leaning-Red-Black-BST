@@ -21,6 +21,7 @@ BSTNode::BSTNode(std::string data){
 BSTNode::BSTNode(){
 
     this->count = 0;
+    this->data = "";
 
     this->left = NULL;
     this->right = NULL;
@@ -30,9 +31,6 @@ BSTNode::BSTNode(){
 }
 
 BSTNode::~BSTNode(){
-
-    delete this->left;
-    delete this->right;
 
 }
 
@@ -64,7 +62,7 @@ BSTNode* BSTree::insert(std::string data, BSTNode* root){
 
     } else {
 
-        root->count++; //This is where you would input code to look at when a repeated word has been entered. //I believe, that if there is a repeated word, then it would come down the tree the same way so it should reach here
+       root->count++; //This is where you would input code to look at when a repeated word has been entered. //I believe, that if there is a repeated word, then it would come down the tree the same way so it should reach here
 
     }
 
@@ -166,19 +164,19 @@ void BSTree::postorder(BSTNode* root, std::ostream& os){
 
 void BSTree::destroy(BSTNode* root){
 
-    if (root->left != NULL) {
-
-        destroy(root->left);
-
+    if(!root){
+        
+        return;
+        
     }
 
-    if (root->right != NULL) {
-
-        destroy(root->left);
-
-    }
-
-    delete root;
+    this->destroy(root->left);
+    
+    this->destroy(root->right);
+    
+    delete root->left;
+    
+    delete root->right;
 
 }
 
@@ -279,11 +277,10 @@ void BSTree::DOT(std::ofstream& of, BSTNode* root) {
 
         if(root->left->red == true) {
 
-            of << "\t" << root->data << " -> " << root->left->data << "[color=\"red\"];" << std::endl;
+            of << "\t" << "\"" << root->data << "\" -> \"" << root->left->data << "\"[label=\"L\"][color=\"red\"];" << std::endl;
 
         } else {
-
-            of << "\t" << root->data << " -> " << root->left->data << "[color=\"black\"];" << std::endl;
+            of << "\t" << "\"" << root->data << "\" -> \"" << root->left->data << "\"[label=\"L\"][color=\"black\"];" << std::endl;
 
         }
 
@@ -295,11 +292,11 @@ void BSTree::DOT(std::ofstream& of, BSTNode* root) {
 
         if(root->right->red == true) {
 
-            of << "\t" << root->data << " -> " << root->right->data << "[color=\"red\"];" << std::endl;
+            of << "\t" << "\"" << root->data << "\" -> \"" << root->right->data << "\"[label=\"R\"][color=\"red\"];" << std::endl;
 
         } else {
 
-            of << "\t" << root->data << " -> " << root->right->data << "[color=\"black\"];" << std::endl;
+            of << "\t" << "\"" << root->data << "\" -> \"" << root->right->data << "\"[label=\"R\"][color=\"black\"];" << std::endl;
 
         }
 
@@ -317,15 +314,15 @@ void BSTree::DOT(std::ofstream& of, BSTNode* root) {
 */
 
 BSTree::BSTree(){
-
-    BSTNode* root;
-
+    
+    this->root = NULL;
+    
 }
 
 BSTree::~BSTree(){
-
-    delete root;
-
+    
+    this->destroy(this->root);
+    
 }
 
 void BSTree::insert(std::string data){
@@ -384,5 +381,5 @@ void BSTree::DOT(std::string fname) {
     of << std::endl;
 
     of << "\n}";
-
+    
 }
