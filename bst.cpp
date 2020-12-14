@@ -116,7 +116,7 @@ int BSTree::height(BSTNode* root){
 
 void BSTree::preorder(BSTNode* root, std::ostream& os){
 
-    if (root = NULL) {
+    if (root == NULL) {
 
         return;
 
@@ -132,7 +132,7 @@ void BSTree::preorder(BSTNode* root, std::ostream& os){
 
 void BSTree::inorder(BSTNode* root, std::ostream& os){
 
-    if (root = NULL) {
+    if (root == NULL) {
 
         return;
 
@@ -148,7 +148,7 @@ void BSTree::inorder(BSTNode* root, std::ostream& os){
 
 void BSTree::postorder(BSTNode* root, std::ostream& os){
 
-    if (root = NULL) {
+    if (root == NULL) {
 
         return;
 
